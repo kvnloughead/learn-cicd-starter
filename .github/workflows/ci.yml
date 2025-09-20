@@ -38,3 +38,9 @@ jobs:
       # Necessary because 'go fmt' always exits with code 0.
       - name: Force formatting
         run: test -z $(go fmt ./...)
+
+      - name: Install staticcheck
+        run: go install honnef.co/go/tools/cmd/staticcheck@latest
+
+      - name: Force linting
+        run: staticcheck ./...
