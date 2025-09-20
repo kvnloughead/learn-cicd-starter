@@ -20,3 +20,21 @@ jobs:
 
       - name: Force Failure
         run: go test -cover ./...
+
+  style:
+    name: Style
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.25.1"
+
+      # Exit with error code 1 if 'go fmt' returns a non-empty string.
+      # Necessary because 'go fmt' always exits with code 0.
+      - name: Force formatting
+        run: test -z $(go fmt ./...)
