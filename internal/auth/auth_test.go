@@ -67,6 +67,10 @@ func TestGetAPIKey(t *testing.T) {
 			}
 
 			token, err := GetAPIKey(headers)
+			if err != nil && tt.expectedErrMsg == "" {
+				t.Fatalf("expected no error; got '%v'", err)
+				return
+			}
 			if tt.expectedErrMsg != "" {
 				if err == nil || token != "" {
 					t.Fatalf("expected empty string token and error message '%v'; got '%s' and '%v'", tt.expectedErrMsg, token, err)
