@@ -1,6 +1,8 @@
 name: ci
 
 on:
+  # Runs when a pull request into main is created or when changes are pushed to
+  # the compare branch
   pull_request:
     branches: [main]
 
